@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transformación de coordenadas INEGI</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Transformación de coordenadas INEGI</h1>
+      <p>Prueba de concepto con los 15 puntos precargados. Las transformaciones entre marcos utilizan las herramientas oficiales de INEGI.</p>
+    </header>
+
+    <section class="card">
+      <h2>Configuración</h2>
+      <div class="grid controls">
+        <label>Marco de origen
+          <select id="sourceFrame"><option value="">Seleccione...</option><option value="nad27">NAD27</option><option value="itrf92">ITRF92, época 1988.0</option><option value="itrf2008">ITRF2008, época 2010.0</option></select>
+        </label>
+        <label>Marco de destino
+          <select id="targetFrame"><option value="">Seleccione...</option><option value="nad27">NAD27</option><option value="itrf92">ITRF92, época 1988.0</option><option value="itrf2008">ITRF2008, época 2010.0</option></select>
+        </label>
+        <label>Zona UTM
+          <select id="zone"><option value="">Seleccione...</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option></select>
+        </label>
+        <label>Hemisferio
+          <select id="hemisphere"><option value="">Seleccione...</option><option value="N">Norte</option><option value="S">Sur</option></select>
+        </label>
+        <label>Tipo de Z
+          <select id="zType"><option value="">Seleccione...</option><option value="unconfirmed">Sin confirmar</option><option value="ellipsoidal">Altura elipsoidal</option><option value="orthometric">Elevación ortométrica</option></select>
+        </label>
+      </div>
+      <button id="transform" disabled>Transformar</button>
+      <div id="processing" role="status" hidden>Procesando…</div>
+    </section>
+
+    <section class="card">
+      <h2>Puntos originales</h2>
+      <div class="table-wrap">
+        <table><thead><tr><th>ID</th><th>Este</th><th>Norte</th><th>Z</th></tr></thead><tbody id="sourceRows"></tbody></table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Ruta seleccionada</h2>
+      <p id="route">Complete la configuración para calcular la ruta.</p>
+    </section>
+
+    <section class="card">
+      <h2>Resultados</h2>
+      <div class="table-wrap">
+        <table><thead><tr><th>ID</th><th>Este origen</th><th>Norte origen</th><th>Z original</th><th>Este destino</th><th>Norte destino</th><th>Altura destino</th><th>Estado</th><th>Advertencia/error</th></tr></thead><tbody id="resultRows"></tbody></table>
+      </div>
+    </section>
+
+    <section class="card" id="messages">
+      <h2>Mensajes</h2>
+      <div id="messageList">Sin mensajes.</div>
+    </section>
+
+    <section class="card">
+      <h2>Reporte detallado</h2>
+      <div id="reportSummary">No hay cálculos registrados.</div>
+      <details id="reportDetails" hidden>
+        <summary>Ver cálculos y respuestas de INEGI</summary>
+        <pre id="reportJson"></pre>
+      </details>
+    </section>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
